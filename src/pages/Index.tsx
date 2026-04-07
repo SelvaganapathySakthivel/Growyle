@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SignupModal from "@/components/SignupModal";
-import Hero from "@/components/Hero";
+import HeroCarousel from "@/components/HeroCarousel";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import rewardOnline from "@/assets/reward-online.jpg";
 import rewardApp from "@/assets/reward-app.jpg";
@@ -13,7 +13,7 @@ import rewardInstore from "@/assets/reward-instore.jpg";
 import rewardDining from "@/assets/reward-dining.jpg";
 import stackSavings from "@/assets/stack-savings.jpg";
 import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
-import LogoLoop from "@/components/LogoLoop";
+import FallingBrands from "@/components/FallingBrands";
 import Stack from "@/components/Stack";
 import GlassBrandCard from "@/components/GlassBrandCard";
 import SavingsCard from "@/components/SavingsCard";
@@ -122,7 +122,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background text-foreground tracking-tight">
       <Navbar />
 
-      <Hero onJoinClick={() => setShowSignup(true)} />
+      <HeroCarousel onJoinClick={() => setShowSignup(true)} />
 
       {/* All Your Favorite Brands Section */}
       <section className="py-24 bg-[#f8fafc] overflow-hidden">
@@ -136,40 +136,11 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-4">
-          {[0, 1, 2, 3].map((rowIndex) => {
-            const chunkSize = Math.ceil(brands.length / 4);
-            const rowBrands = brands.slice(rowIndex * chunkSize, (rowIndex + 1) * chunkSize);
-            const speed = 25 + rowIndex * 5;
-            const direction = rowIndex % 2 === 0 ? "left" : "right";
-
-            return (
-              <LogoLoop
-                key={rowIndex}
-                logos={rowBrands.map(brand => ({ node: null, ...brand }))}
-                speed={direction === "left" ? speed : -speed}
-                direction="left"
-                logoHeight={85}
-                gap={12}
-                fadeOut
-                fadeOutColor="#f8fafc"
-                renderItem={(brand: any) => (
-                  <div className="px-1.5 py-1">
-                    <GlassBrandCard
-                      name={brand.name}
-                      logo={brand.logo}
-                      cashback={brand.cashback}
-                      bgColor={brand.bgColor}
-                      textColor={brand.textColor}
-                    />
-                  </div>
-                )}
-              />
-            );
-          })}
+        <div className="relative h-[500px] md:h-[700px] w-full">
+          <FallingBrands brands={brands} />
         </div>
 
-        <div className="container px-4 mx-auto mt-16 text-center">
+        <div className="container px-4 mx-auto mt-8 text-center">
           <p className="text-sm text-muted-foreground">
             Eligible rates include an extra 10% Cash Back as your welcome reward.<br />
             Earn up to an extra $50! <span className="text-primary underline cursor-pointer">Terms Apply</span>

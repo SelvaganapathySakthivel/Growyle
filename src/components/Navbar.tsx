@@ -4,6 +4,7 @@ import { Search, Gift, ChevronDown, User, Menu, X, ExternalLink } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SignupModal from "./SignupModal";
+import logo from "@/assets/brand/logo.png";
 
 const categoryData: Record<string, { stores: { name: string; cashback: string; wasRate?: string }[]; featured: { image: string; brand: string; cashback: string; description: string } }> = {
   "Travel & Vacations": {
@@ -249,9 +250,8 @@ export default function Navbar({ isLoggedIn = false, variant = "landing" }: Navb
       <header className="sticky top-0 z-50 bg-background border-b">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-1 shrink-0">
-              <span className="text-2xl font-extrabold text-primary tracking-tight">Cash</span>
-              <span className="text-2xl font-extrabold text-foreground tracking-tight">Back</span>
+            <Link to="/" className="flex items-center gap-1 shrink-0 -ml-2">
+              <img src={logo} alt="Growyle" className="h-[48px] w-auto object-contain" />
             </Link>
 
             <div className="hidden md:flex items-center gap-4 flex-1 mx-8">
